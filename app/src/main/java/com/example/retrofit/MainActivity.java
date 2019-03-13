@@ -37,15 +37,16 @@ public class MainActivity extends AppCompatActivity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        List<String> input = new ArrayList<>();
+
+       /* List<String> input = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             input.add("Test1" + i);
         }// define an adapter
         mAdapter = new MyAdapter(input);
         recyclerView.setAdapter(mAdapter);
+*/
 
 
-/*
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +58,19 @@ public class MainActivity extends AppCompatActivity {
                 call.enqueue(new Callback<List<Contributor>>() {
                     @Override
                     public void onResponse(Call<List<Contributor>> call, Response<List<Contributor>> response) {
-                        final TextView textView = findViewById(R.id.textView);
-                        textView.setText(response.body().toString());
+                        List<String> input = new ArrayList<>();
+                        String respuesta = response.body().toString();
+                        for (String val : respuesta.split(",")) {
+
+                            // for (int i = 0; i < 100; i++) {
+                            input.add(val);
+                        }
+                        //}// define an adapter
+                        mAdapter = new MyAdapter(input);
+                        recyclerView.setAdapter(mAdapter);
+
+                      /*  final TextView textView = findViewById(R.id.textView);
+                        textView.setText(response.body().toString());*/
                     }
 
                     @Override
@@ -68,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-        }); */
+        });
 
     }
 
